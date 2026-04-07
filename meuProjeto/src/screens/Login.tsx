@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
 
-export default function Login({ navigation }) {
+export default function Login({ navigation }: any) {
 
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
   function fazerLogin() {
 
+    alert("Botão clicado");
     // depois aqui virá a conexão com banco
     if (email === "" || senha === "") {
       alert("Preencha todos os campos");
