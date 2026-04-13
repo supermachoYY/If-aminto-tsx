@@ -1,23 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
+
+import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { auth } from "../database/database";
 
 export default function Login({ navigation }: any) {
 
-  const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
+  const [email, setEmail] = useState<string>("");
+  const [senha, setSenha] = useState<string>("");
 
-  function fazerLogin() {
+  // 🔥 Login automático (igual iFood)
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        navigation.replace("Home");
+      }
+    });
 
-    alert("Botão clicado");
-    // depois aqui virá a conexão com banco
+    return unsubscribe;
+  }, []);
+
+  async function fazerLogin() {
+
     if (email === "" || senha === "") {
       alert("Preencha todos os campos");
       return;
     }
 
-    alert("Login realizado");
+    try {
 
-    navigation.navigate("Home");
+      await signInWithEmailAndPassword(auth, email, senha);
+
+      navigation.replace("Home");
+
+    } catch (error: any) {
+      alert("Email ou senha inválidos");
+    }
+
   }
 
   return (

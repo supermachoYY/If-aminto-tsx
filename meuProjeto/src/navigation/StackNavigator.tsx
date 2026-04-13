@@ -8,7 +8,9 @@ import Produto from "../screens/Produto";
 import ConfirmarPedido from "../screens/ConfirmarPedido";
 import QRCodePedido from "../screens/QRCodePedido";
 import AvaliarProduto from "../screens/AvaliarProduto";
-
+import CriarLanche from "../screens/CriarLanche";
+import PainelVendedor from "../screens/PainelVendedor";
+import EditarLanche from "../screens/EditarLanche";
 
 const Stack = createNativeStackNavigator();
 
@@ -34,6 +36,18 @@ export default function StackNavigator() {
         component={Home}
       />
 
+      <Stack.Screen
+        name="CriarLanche"
+        component={CriarLanche}
+      />
+      
+      <Stack.Screen name="EditarLanche" 
+      component={EditarLanche} />
+      
+      <Stack.Screen
+        name="PainelVendedor"
+        component={PainelVendedor}
+      />
       <Stack.Screen
         name="Produto"
         component={Produto}

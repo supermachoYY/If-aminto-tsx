@@ -1,14 +1,27 @@
 import React from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 
-export default function ProductCard({ produto, onPress }) {
+type Produto = {
+  id: string;
+  nome: string;
+  preco: number;
+  imagem: string;
+};
+
+type Props = {
+  produto: Produto;
+  onPress: () => void;
+};
+
+export default function ProductCard({ produto, onPress }: Props) {
 
   return (
-
     <TouchableOpacity style={styles.card} onPress={onPress}>
 
       <Image
-        source={{ uri: produto.imagem }}
+        source={{
+          uri: produto.imagem || "https://via.placeholder.com/150"
+        }}
         style={styles.imagem}
       />
 
@@ -19,13 +32,12 @@ export default function ProductCard({ produto, onPress }) {
         </Text>
 
         <Text style={styles.preco}>
-          R$ {produto.preco}
+          R$ {produto.preco.toFixed(2)}
         </Text>
 
       </View>
 
     </TouchableOpacity>
-
   );
 }
 

@@ -1,23 +1,52 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
 
-export default function Cadastro({ navigation }: any ) {
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
 
-  const [nome, setNome] : any = useState("");
-  const [telefone, setTelefone] : any = useState("");
-  const [email, setEmail] : any = useState("");
-  const [senha, setSenha] : any = useState("");
+import { auth, db } from "../database/database";
 
-  function cadastrar(){
+export default function Cadastro({ navigation }: any) {
+
+  const [nome, setNome] = useState<string>("");
+  const [telefone, setTelefone] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [senha, setSenha] = useState<string>("");
+
+  async function cadastrar(){
 
     if(nome === "" || telefone === "" || email === "" || senha === ""){
       alert("Preencha todos os campos");
       return;
     }
 
-    alert("Usuário cadastrado");
+    try {
 
-    navigation.navigate("Login");
+      // 🔐 Cria usuário no Firebase Auth
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        senha
+      );
+
+      const user = userCredential.user;
+
+      // 💾 Salva dados adicionais no Firestore
+      await setDoc(doc(db, "usuarios", user.uid), {
+        nome,
+        telefone,
+        email,
+        criadoEm: new Date()
+      });
+
+      alert("Usuário cadastrado com sucesso");
+
+      navigation.replace("Home");
+
+    } catch (error: any) {
+      alert(error.message);
+    }
+
   }
 
   return (
