@@ -11,6 +11,9 @@ import AvaliarProduto from "../screens/AvaliarProduto";
 import CriarLanche from "../screens/CriarLanche";
 import PainelVendedor from "../screens/PainelVendedor";
 import EditarLanche from "../screens/EditarLanche";
+import LerQRCode from "../screens/LerQRCode";
+
+// ... dentro do Stack.Navigator
 
 const Stack = createNativeStackNavigator();
 
@@ -24,6 +27,10 @@ export default function StackNavigator() {
         name="Login"
         component={Login}
         options={{ headerShown: false }}
+      />
+
+      <Stack.Screen name="LerQRCode"
+        component={LerQRCode}
       />
 
       <Stack.Screen
@@ -40,10 +47,10 @@ export default function StackNavigator() {
         name="CriarLanche"
         component={CriarLanche}
       />
-      
-      <Stack.Screen name="EditarLanche" 
-      component={EditarLanche} />
-      
+
+      <Stack.Screen name="EditarLanche"
+        component={EditarLanche} />
+
       <Stack.Screen
         name="PainelVendedor"
         component={PainelVendedor}
@@ -53,25 +60,25 @@ export default function StackNavigator() {
         component={Produto}
       />
 
-        <Stack.Screen
+      <Stack.Screen
         name="Carrinho"
         component={Carrinho}
-        />
+      />
 
       <Stack.Screen
-  name="ConfirmarPedido"
-  component={ConfirmarPedido}
-/>
+        name="ConfirmarPedido"
+        component={ConfirmarPedido}
+      />
 
-<Stack.Screen
-  name="QRCodePedido"
-  component={QRCodePedido}
-/>
+      <Stack.Screen
+        name="QRCodePedido"
+        component={QRCodePedido}
+      />
 
-<Stack.Screen
-  name="AvaliarProduto"
-  component={AvaliarProduto}
-/>
+      <Stack.Screen
+        name="AvaliarProduto"
+        component={AvaliarProduto}
+      />
     </Stack.Navigator>
   );
 }

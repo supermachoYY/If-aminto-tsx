@@ -158,6 +158,13 @@ export default function PainelVendedor({ navigation }: any) {
         }
       />
 
+      <TouchableOpacity
+        style={styles.botaoLerQR}
+        onPress={() => navigation.navigate("LerQRCode")}
+      >
+        <Text style={styles.botaoTexto}>📷 Ler QR Code do Cliente</Text>
+      </TouchableOpacity>
+
     </View>
   );
 }
@@ -230,6 +237,20 @@ const styles = StyleSheet.create({
 
   textoBotao: {
     color: "#fff",
+    fontWeight: "bold"
+  },
+
+  botaoLerQR: {
+    backgroundColor: "#9b59b6",
+    padding: 15,
+    borderRadius: 8,
+    marginTop: 20,
+    marginBottom: 30
+  },
+
+  botaoTexto: {
+    color: "#fff",
+    textAlign: "center",
     fontWeight: "bold"
   }
 

@@ -7,7 +7,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyAkqngJXbPwVzgAtBFejFU2BCaVF2a7ZAQ",
   authDomain: "if-aminto-e95c1.firebaseapp.com",
   projectId: "if-aminto-e95c1",
-  storageBucket: "if-aminto-e95c1.appspot.app", // ✅ CORRETO
+  storageBucket: "if-aminto-e95c1.appspot.com", // ✅ CORRETO
   messagingSenderId: "987274612503",
   appId: "1:987274612503:web:3af69dcd9e783d7bddf152"
 };
